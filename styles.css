@@ -1,0 +1,41 @@
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /*
+  background: url(img.cherryblossoms.jpg) no-repeat center top local; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  */
+}
+body {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  /*top: 0;*/
+  margin: 0;
+  padding: 0;
+  background: rgba(255,255,255,0.5);
+  font-family: 'alpha geometrique', fantasy, cursive, sans-serif;
+  /* it looks like alpha geometrique and/or fantasy do NOT have a bold font */
+}
+.myCopyright {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  width: 200px;
+  margin-left: -100px;
+  text-align: center;
+  color: #5BB75B;
+}
+.myMsg {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 600px;
+  margin-right: 0;
+  text-align: right;
+  color: black;
+}

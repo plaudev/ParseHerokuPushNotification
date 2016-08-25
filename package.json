@@ -1,0 +1,30 @@
+{
+  "name": "push2u",
+  "version": "0.3.0",
+  "description": "Patrick Lau @plaudev for Rob Percival's iOS9 course lecture #140 push notification",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "~2.2.8",
+    "parse": "~1.8.0",
+    "parse-server": "^2.2.18"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "parse",
+    "heroku",
+    "Rob Percival",
+    "iOS9 Course",
+    "push notification"
+  ],
+  "license": "MIT"
+}
