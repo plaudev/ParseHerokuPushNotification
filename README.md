@@ -164,7 +164,9 @@ it has the drawback of potentially requiring you to have do sudo every time you 
 
   $ sudo chown -R $(whoami) /usr/local/lib
 
-The other is the mongodb version issue already discussed above in #2.2.6. If any step here seems confusing, read #2.2.2 & #4.3.1 again. I'm intentionally trying to control my verbiage here to save time. Assuming npm installs everything correctly:
+The other is the mongodb version issue already discussed above in #2.2.6. If any step here seems confusing, read #2.2.2 & #4.3.1 again. I'm intentionally trying to control my verbiage here to save time. 
+
+All those pieces of software & files you need will be placed into a folder "node_modules" that npm will create for you. This is why you have that entry in the .gitignore file (the other is a "logs" folder that your local Heroku server will write to). Assuming npm installs everything correctly:
 
   $ heroku local web
   
