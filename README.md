@@ -92,6 +92,8 @@ Now it's time to download my files (#5.1). But don't put them in the folder you 
   
 The empty folder "certs" is where you will plop your own .p12 certificate created according to Rob's instructions in Lecture #140. The two files beginning with a dot are hidden files. The .env sets up Heroku environment variables locally so the same Node.js code can function the same way locally & on Heroku (#4.3.5). The .gitignore lists files that git should ignore when it up-/down-loads between Heroku & your mac.
 
+It has just come to my attention that Parse Server installs on Heroku as recently as a couple weeks ago uses an environment variable for server URL named PARSER_SERVER_URL. Both my apps (Instagram & Tinder) set up then uses that name. However my new test app Push2U just a couple days ago uses the name SERVER_URL. I have tried but could not edit any of these variable names; only the variable values can be edited. So I don't  think it is the case that I accidentally overwrote one. What this means is that when you set up your Parse Heroku server, you must compare to see if this variable name as shown on the Heroku dashboard is the same as what is used in index.js and .env files. If it is not, you must edit those variables in those files accordingly. Since what you need depends on your situation, I will not be updating those two files on github.
+
 #### 2.2.5.1 If You Are Really Pressed For Time
 At this point, you already have all the files & set-up you need. If you are really pressed for time, you can just copy the files from #2.2.5 into ~/Documents/Coding/Parse/tinderpl. The knowledge from #2.2.1 & #2.2.2 should take you the rest of the way within 5-10 minutes. The rest of this guide are more explanations than instructions.
 
