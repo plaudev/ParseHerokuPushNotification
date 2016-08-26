@@ -170,7 +170,9 @@ All those pieces of software & files you need will be placed into a folder "node
 
   $ heroku local web
   
-will launch the Parse Heroku server locally which uses a local copy of the mongodb. If you specify it in either .env or in index.js, you can optionally tell this local set-up to use the online mongodb which I've tried and seen it work. What I have NOT done is to try push with this local set-up. Feel free to have a go at that & let me know how you get on!
+will launch the Parse Heroku server locally which uses a local copy of the mongodb. If you specify it in either .env or in index.js, you can optionally tell this local set-up to use the online mongodb which I've tried and seen it work. 
+
+I have tried push with this local set-up but even before getting there I got connection issues (like "App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app's Info.plist file"). I have tried both with ATS Allow Arbitrary Loads on & off but get pretty much the same result. Then it dawned on me that Heroku when run locally uses http, not https, but Parse is always supposed to use https. Thus my gut tells me Parse Heroku locally won't work at all for iOS unless there is a way to get Heroku to use https. I will leave this matter on the back burner for now. Feel free to have a go at that & let me know how you get on!
 
 ### 2.3.2 Install & Test on Heroku
 Now finally the big one. Actually with not that much extra effort, we can get all this to run in the cloud.
@@ -201,7 +203,7 @@ and then copy & paste the token at the appropriate prompt. Once "git push heroku
 ## 2.4 Testing Push
 The Parse Push docs (#4.2.6) gives examples of using curl to send push notifications. Curl, or more properly cURL (#4.5.11) - not to be confused with curling locks or rocks! - can be performed from the Terminal. Essentially you pass it some http headers specifying the appId, the masterKey, etc and then a json object of your push notification. I will leave you to read the docs to try it. Because the length of the whole cURL command is long, the docs use a "\" to concatenate line-breaks which actually work as is if you copy & paste into Terminal. I prefer typing it out manually since you have to change many of the parameters manually anyway.
 
-I can confirm that cURL works. I was also able to do it from the parse-dashboard.
+I can confirm that cURL works. I was also able to do it from the parse-dashboard. And I have also successfully do the same from my original Tinder app on Heroku.
 
 As already noted, I have yet to figure out how to use Parse cloud code to send push notification. And I have not tried Android at all but this set-up (provided you uncomment & fill out the relevant lines in index.js) should do immediately work for Android, too.
 
