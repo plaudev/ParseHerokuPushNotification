@@ -153,7 +153,7 @@ As an aside, here is where the spelling error I mentioned earlier showed up. Ins
 ### 2.2.9 "main.js"
 The main.js file contains what is known as cloud functions which is a feature where you can perform ad hoc actions on the Parse Server (#4.2.8). It is commonly used for pre- and post-API call processing. Push can also be done from a cloud function.
 
-The default main.js only has the first of 4 functions in my zip file. I put in the others in an attempt to figure out how to get it to send push notification but I needed more time.
+The default main.js from Parse docs only has the first of 4 functions in my zip file. I put in the others in an attempt to figure out how to get it to send push notification. The 2nd one shows sample syntax to query Parse classes. The 3rd & 4th show two different syntax for cloud push.
 
 
 ## 2.3 If All That Did Not Put You To Sleep...
