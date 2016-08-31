@@ -151,7 +151,7 @@ Then the Parse API is mounted and Heroku is instructed to listen to a specific p
 As an aside, here is where the spelling error I mentioned earlier showed up. Instead of "pfx", the Roger Stringer tutorial had "pdx" (#4.4.2). Apparently this caused a lot of confusion & wasted time (#4.5.6 & #4.5.5) though the official guides like #4.2.6 have the right spelling. Let me state here clearly though, the Roger Stringer tutorials nonetheless helped me greatly figure out how to set all this up.
 
 ### 2.2.9 "main.js"
-The main.js file contains what is known as cloud functions which is a feature where you can perform ad hoc actions on the Parse Server (#4.2.8). It is commonly used for pre- and post-API call processing. Push apparently can also be done from a cloud function although I have NOT yet figured out how to do it.
+The main.js file contains what is known as cloud functions which is a feature where you can perform ad hoc actions on the Parse Server (#4.2.8). It is commonly used for pre- and post-API call processing. Push can also be done from a cloud function.
 
 The default main.js only has the first of 4 functions in my zip file. I put in the others in an attempt to figure out how to get it to send push notification but I needed more time.
 
@@ -213,9 +213,9 @@ and then copy & paste the token at the appropriate prompt. Once "git push heroku
 ## 2.4 Testing Push
 The Parse Push docs (#4.2.6) gives examples of using curl to send push notifications. Curl, or more properly cURL (#4.5.11) - not to be confused with curling locks or rocks! - can be performed from the Terminal. Essentially you pass it some http headers specifying the appId, the masterKey, etc and then a json object of your push notification. I will leave you to read the docs to try it. Because the length of the whole cURL command is long, the docs use a "\" to concatenate line-breaks which actually work as is if you copy & paste into Terminal. I prefer typing it out manually since you have to change many of the parameters manually anyway.
 
-I can confirm that cURL works. I was also able to do it from the parse-dashboard. And I have also successfully do the same from my original Tinder app on Heroku.
+I can confirm that push via cURL (both inline & via cloud code) works. I was also able to do it from the parse-dashboard. And I have also successfully do the same from my original Tinder app on Heroku.
 
-As already noted, I have yet to figure out how to use Parse cloud code to send push notification. And I have not tried Android at all but this set-up (provided you uncomment & fill out the relevant lines in index.js) should do immediately work for Android, too.
+As already noted, I have not tried Android at all but this set-up (provided you uncomment & fill out the relevant lines in index.js) should do immediately work for Android, too.
 
 Good luck & have fun! Please also do let me know about any bugs, enhancements or anything you figured out along the way!
 
