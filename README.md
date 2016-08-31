@@ -92,7 +92,9 @@ Now it's time to download my files (#5.1). But don't put them in the folder you 
   
 The empty folder "certs" is where you will plop your own .p12 certificate created according to Rob's instructions in Lecture #140. The two files beginning with a dot are hidden files. The .env sets up Heroku environment variables locally so the same Node.js code can function the same way locally & on Heroku (#4.3.5). The .gitignore lists files that git should ignore when it up-/down-loads between Heroku & your mac.
 
-It has just come to my attention that Parse Server installs on Heroku as recently as a couple weeks ago uses an environment variable for server URL named PARSER_SERVER_URL. Both my apps (Instagram & Tinder) set up then uses that name. However my new test app Push2U just a couple days ago uses the name SERVER_URL. I have tried but could not edit any of these variable names; only the variable values can be edited. So I don't  think it is the case that I accidentally overwrote one. What this means is that when you set up your Parse Heroku server, you must compare to see if this variable name as shown on the Heroku dashboard is the same as what is used in index.js and .env files. If it is not, you must edit those variables in those files accordingly. Since what you need depends on your situation, I will not be updating those two files on github.
+It has just come to my attention that Parse Server installs on Heroku as recently as a couple weeks ago uses an environment variable for server URL named PARSER_SERVER_URL. Both my apps (Instagram & Tinder) set up then uses that name. However my new test app Push2U just a couple days ago uses the name SERVER_URL. I have tried but could not edit any of these variable names; only the variable values can be edited. So I don't  think it is the case that I accidentally overwrote one. What this means is that when you set up your Parse Heroku server, you must compare to see if this variable name as shown on the Heroku dashboard is the same as what is used in index.js and .env files. If it is not, you must edit those variables in those files accordingly.
+
+Specifically, when deployed locally, the PARSER_SERVER_URL or the SERVER_URL environment variables should have a value like "http://localhost:5000" or "http//localhost:1337". When deployed on Heroku, those variables should have a value like "https://yourAppName.herokuapp.com". Notice I don't have "/parse" (ie the PARSE_MOUNT) attached to the end of these variables. You will see why in #2.2.8.
 
 #### 2.2.5.1 If You Are Really Pressed For Time
 At this point, you already have all the files & set-up you need. If you are really pressed for time, you can just copy the files from #2.2.5 into ~/Documents/Coding/Parse/tinderpl. The knowledge from #2.2.1 & #2.2.2 should take you the rest of the way within 5-10 minutes. The rest of this guide are more explanations than instructions.
@@ -126,7 +128,13 @@ As you already saw in #2.2.1 & #2.2.2, this is the file that actually launches t
 
 Everything on Heroku begins with Express, at least in everything I've seen in the past few days.
 
-Then the Parse Server is cued up to launch. I print the environment variables in the console just to see what is there so I could set up the .env file appropriately. They are all the same ones Rob & Geir told us to set up. It is worth stressing that I tried to rely on environment variables as much as possible to preventing hardcoding things in this file. The:
+Then the Parse Server is cued up to launch. I print the environment variables in the console just to see what is there so I could set up the .env file appropriately. They are all the same ones Rob & Geir told us to set up. It is worth stressing that I tried to rely on environment variables as much as possible to preventing hardcoding things in this file. 
+
+One of the most important configuration settings for the Parse API is Parse.serverURL. You will see that it is being set up in index.js as follows:
+
+  serverURL: (process.env.PARSER_SERVER_URL || process.env.SERVER_URL ) + process.env.PARSE_MOUNT
+  
+This sets up the Parse.serverURL configuration locally as something like "http://localhost:XXXX/parse" (where XXXX is the port number Parse will listen to) and on Heroku as "https://yourAppName.herokuapp.com" (where "yourAppName" is your app's name on Heroku). This is why in #2.2.5 the PARSER_SERVER_URL and/or SERVER_URL must NOT include "/parse" at the end as the PARSE_MOUNT is being appended explicitly. The:
 
   var api = new ParseServer({...})
 
