@@ -2,12 +2,15 @@
 // Patrick Lau @plaudev
 // For use with Rob Pervical's iOS9 course lecture #140 on push notification https://www.udemy.com/the-complete-ios-9-developer-course/learn/v4/content
 
+// turning verbose on will help debugging
+// process.env.VERBOSE = true
+
 // init express framework
 var express = require('express');
 var app = express();
 
 // debug print
-console.log(process.env.APP_ID + "|" + process.env.CLIENT_KEY + "|" + process.env.MASTER_KEY + "|" + process.env.DATABASE_URI + "|" + process.env.PARSE_MOUNT + "|" + process.env.SERVER_URL + "|" + process.env.CLOUD_CODE_MAIN + "|" + process.env.PORT);
+console.log(process.env.APP_ID + "|" + process.env.CLIENT_KEY + "|" + process.env.MASTER_KEY + "|" + process.env.DATABASE_URI + "|" + process.env.PARSE_MOUNT + "|" + process.env.PARSER_SERVER_URL + "|" + process.env.SERVER_URL + "|" + process.env.CLOUD_CODE_MAIN + "|" + process.env.PORT + "|" + process.env.VERBOSE);
 
 // init Parse
 var ParseServer = require('parse-server').ParseServer;
@@ -19,7 +22,7 @@ var api = new ParseServer({
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID,
   masterKey: process.env.MASTER_KEY,
-  serverURL: process.env.SERVER_URL,
+  serverURL: (process.env.PARSER_SERVER_URL || process.env.SERVER_URL ) + process.env.PARSE_MOUNT,
   liveQuery: {
     classNames: ["Posts", "Comments"]
   },
