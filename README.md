@@ -29,6 +29,9 @@ Since things change really fast especially on iOS - and you are reading this bec
 
 The starting point of these instructions assumes you have already followed Rob's instructions in Lecture #112 to deploy Parse Server on Heroku and those in Lecture #113 to deploy parse-dashboard. If you are stuck trying to figure out those, Geir Fjærli has an excellent & very detailed guide that will very likely help you (#4.1.3).
 
+For those not doing Rob's iOS course, this means you have clicked the purple "Deploy to Heroku" button at #4.2.3 and set up the environment variables on the Heroku dashboard (see #2.2.5).
+
+
 ## 2.2 Set Up Parse Server Locally
 
 ### 2.2.1 Bare Bones Node.js Web Server on Heroku
@@ -79,15 +82,15 @@ will show the hidden .git file I mentioned earlier which you will need for all t
 ## 2.2.5 Download Files from My Github to Mac
 Now it's time to download my files (#5.1). But don't put them in the folder you just did the git to clone your Tinder app files into. I suggest you place these files in a folder unrelated to your existing Tinder app development so you can plop each one into where you need it as you need it, or compose each one yourself, and most importantly not interfere with what git will do for you. Let's say you have just downloaded that zip file into ~/Documents/Coding/SomewhereElse. Unzip that file and take a look. You should have these contents in the appropriate subfolders:
 
-  certs
-  cloud/main.js
-  index.js
-  package.json
-  Procfile
-  public/index.html
-  public/styles.css
-  README.md
-  .env
+  certs  
+  cloud/main.js  
+  index.js  
+  package.json  
+  Procfile  
+  public/index.html  
+  public/styles.css  
+  README.md  
+  .env  
   .gitignore
   
 The empty folder "certs" is where you will plop your own .p12 certificate created according to Rob's instructions in Lecture #140. The two files beginning with a dot are hidden files. The .env sets up Heroku environment variables locally so the same Node.js code can function the same way locally & on Heroku (#4.3.5). The .gitignore lists files that git should ignore when it up-/down-loads between Heroku & your mac.
