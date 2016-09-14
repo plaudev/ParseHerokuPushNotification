@@ -60,8 +60,8 @@ at the Terminal which will prompt you for your Heroku account credentials. From 
 ## 2.2.4 Clone Your Tinder App Files Locally to Mac
 Create a new folder that you will permanently use to pass back & forth between Heroku & your mac wrt setting up the Parse server. It is important you only use this folder for this sole purpose as git, what we will be using here, maintains a hidden .git subfolder within each folder that it creates for you to keep track of things. For the sake of clarity, I will use folder names I created for myself to illustrate. 
 
-  $ cd ~/Documents/Coding
-  $ mkdir Parse
+  $ cd ~/Documents/Coding  
+  $ mkdir Parse  
   $ cd Parse
   
 Then do this by replacing "tinderpl" with the name of your own Tinder app as you named it when you set up Parse on Heroku:
