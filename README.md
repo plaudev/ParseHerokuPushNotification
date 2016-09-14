@@ -70,7 +70,7 @@ Then do this by replacing "tinderpl" with the name of your own Tinder app as you
   
 This will create the folder ~/Documents/Coding/Parse/tinderpl. Then do these:
 
-  $ cd tinderpl
+  $ cd tinderpl  
   $ ls -l
   
 Notice anything strange? This folder is empty! What?! Apparently there is a known issue with Heroku where cloning (aka downloading) your app with git does not actually download anything (#4.3.4). So you are scratching your head wondering why I just wasted your time with this. I guarantee you it's not because this conundrum has wasted many hours of mine & therefore nefariously I want you to suffer the same. The answer (drum roll, please):
@@ -166,7 +166,7 @@ Now that you have plopped or composed all those files in ~/Documents/Coding/Pars
 ### 2.3.1 Install & Test Locally
 To install locally:
 
-  $ cd ~/Documents/Coding/Parse/tinderpl
+  $ cd ~/Documents/Coding/Parse/tinderpl  
   $ npm install
   
 watch the logs that are shown in the Terminal for any errors. Some of lines are colour coded and errors are often in red & warnings yellow. In all the times I've run npm in this exercise, I've only seen 2 problems. The first one is a file structure permissions problem (#4.5.9) where something needs to be installed within /usr/local/lib. While some people recommend you bypass such a problem with:
@@ -190,7 +190,7 @@ I have tried push with this local set-up but even before getting there I got con
 ### 2.3.2 Install & Test on Heroku
 Now finally the big one. Actually with not that much extra effort, we can get all this to run in the cloud.
 
-  $ cd ~/Documents/Coding/Parse/tinderpl
+  $ cd ~/Documents/Coding/Parse/tinderpl  
   $ git add .
   
 That git line above tells git you want to add everything (minus those in .gitignore) in the current folder (where that hidden .git subfolder is).
