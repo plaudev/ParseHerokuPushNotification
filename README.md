@@ -153,6 +153,37 @@ Then the Parse API is mounted and Heroku is instructed to listen to a specific p
 
 As an aside, here is where the spelling error I mentioned earlier showed up. Instead of "pfx", the Roger Stringer tutorial had "pdx" (#4.4.2). Apparently this caused a lot of confusion & wasted time (#4.5.6 & #4.5.5) though the official guides like #4.2.6 have the right spelling. Let me state here clearly though, the Roger Stringer tutorials nonetheless helped me greatly figure out how to set all this up.
 
+#### 2.2.8.1 Application Transport Security (ATS) Solution
+
+Courtesy @luizmb, the heretofore conundrum of using Parse hosted on Heroku has been (largely) resolved. In iOS when you try to download an image file from Parse this way:
+
+```
+let imageFile = feed[indexPath.row].imageFile as PFFile
+imageFile.getDataInBackgroundWithBlock({ (data, error) in
+    if let image = UIImage(data: data!) {
+        cell.postImage.image = image
+    } else {
+        cell.postImage.image = UIImage(named: defaultImageFile)
+    }
+})
+```
+
+you can run into ATS errors even though Parse on Heroku is supposed to support HTTPS & you have configured `serverURL` to be HTTPS. The only way to fix this issue is to turn off ATS (either completely via `AllowArbitraryLoads` or selectively by specifying certain domain names). This is generally viewed at best as a hack for development purposes as in production you probably do NOT want to turn off ATS at all.  
+
+After many months of scratching my head, @luizmb was kind enough to alert me to the solution when he found it. Apparently in `index.js` when you instantiate Parse you also need to specify the variable `publicServerURL` which is either undocumented or at least poorly documented. This variable corresponds to environ variable `PARSE_PUBLIC_SERVER_URL` which you must also specify in your Heroku settings if you want `index.js` to use it. However, I say this only largely resolves the ATS issue caused by `.getDataInBackgroundWithBlock()` because of two reasons.
+
+First, any existing image files you already have on parse before implementing this solution may still not load properly as I have discovered. In order of all images to load, in my case I had to remove all previous image files and post new ones in the Parse.
+
+Secondly, I have only managed to make this work consistently on an actual device (iOS 9.3.5). When I run the same app in the simulator (iOS 9.3), it does not trigger the ATS error but these instead. I have alerted Parse of these different errors but have not yet heard any explanatino or solution.
+
+```
+NSURLSession/NSURLConnection HTTP load failed (kCFStreamErrorDomainSSL, -9802)
+[Error]: An SSL error has occurred and a secure connection to the server cannot be made. (Code: 100, Version: 1.14.2)
+[Error]: Network connection failed. Making attempt 4 after sleeping for 15.848020 seconds.
+```
+
+Please see [this ticket](https://github.com/ParsePlatform/Parse-SDK-iOS-OSX/issues/1022) for details of the solution and here is a [reference to the environ variable](https://github.com/ParsePlatform/parse-server/blob/master/src/cli/definitions/parse-server.js#L47). 
+
 ### 2.2.9 "main.js"
 The main.js file contains what is known as cloud functions which is a feature where you can perform ad hoc actions on the Parse Server (#4.2.8). It is commonly used for pre- and post-API call processing. Push can also be done from a cloud function.
 
