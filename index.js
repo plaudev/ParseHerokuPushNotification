@@ -23,6 +23,7 @@ var api = new ParseServer({
   appId: process.env.APP_ID,
   masterKey: process.env.MASTER_KEY,
   serverURL: (process.env.PARSER_SERVER_URL || process.env.SERVER_URL ) + process.env.PARSE_MOUNT,
+  publicServerURL: process.env.PARSE_PUBLIC_SERVER_URL || process.env.PARSER_SERVER_URL || process.env.SERVER_URL,
   liveQuery: {
     classNames: ["Posts", "Comments"]
   },
